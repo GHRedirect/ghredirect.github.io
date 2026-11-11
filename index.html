@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Redirect</title>
+    <a rel="me" href="https://mastodon.social/@flower_r4sr0">Mastodon</a>
+</head>
+<body>
+    <p>if you are seeing this for over 10 secconds this means the user who gave you this url is broken/malformed.</p>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get("u");
+
+        if (username && /^[a-zA-Z0-9-]{1,39}$/.test(username)) {
+            window.location.replace(
+                "https://github.com/" + encodeURIComponent(username)
+            );
+        } else {
+            document.body.innerHTML = `
+                <h1>GitHub Redirect</h1>
+                <p>Missing or invalid username.</p>
+                <p>Usage: ?u=username</p>
+            `;
+        }
+    </script>
+</body>
+</html>
